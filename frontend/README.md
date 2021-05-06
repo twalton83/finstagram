@@ -9,3 +9,5 @@ This project brings that idea to life. Finstagram (taken from the pop culture ph
 ## Tools
 
 The backend is hosted by Firebase Firestore, user authentication is handled by Firebase Authentication. The frontend is built with React with Typescript, styled-components, and react-transition-group. CI/CD is handled by CircleCI, Husky, and Heroku.
+
+Tests are handled with Jest and react-testing-library.
