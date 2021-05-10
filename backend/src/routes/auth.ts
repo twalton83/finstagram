@@ -37,4 +37,4 @@ interface IRequest {
   login: Function;
 }
 
-export { router };
+export default router;
