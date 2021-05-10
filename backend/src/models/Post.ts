@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 const userSchema = require('./User');
 const commentSchema = require('./Comment');
@@ -13,4 +14,4 @@ const postSchema = new Schema({
   caption: String,
 });
 
-export { postSchema };
+export default postSchema;

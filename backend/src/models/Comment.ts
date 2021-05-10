@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const userSchema = require('./User');
 
 const commentSchema = new Schema({
@@ -11,4 +13,4 @@ const commentSchema = new Schema({
   replies: [this],
 });
 
-export { commentSchema };
+export default commentSchema;
