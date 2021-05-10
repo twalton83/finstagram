@@ -5,7 +5,7 @@ const passport = require('passport');
 
 router.post('/login', function (req: IRequest, res: IResponse, next: Function) {
   passport.authenticate(
-    'local',
+    'jwt',
     { session: false },
     (err: Error, user: Object, info: Object) => {
       if (err || !user) {
