@@ -8,9 +8,11 @@ const userSchema = new Schema({
   dateOfSignup: { type: Date, default: Date.now },
   private: { type: Boolean, default: false },
   posts: [postSchema],
-  followers: [this],
-  closeFriends: [this],
-  following: [this],
+  followers: { type: Schema.Types.ObjectId, ref: 'User' },
+  closeFriends: { type: Schema.Types.ObjectId, ref: 'User' },
+  following: { type: Schema.Types.ObjectId, ref: 'User' },
 });
+
+const User = mongoose.model('User', userSchema);
 
 export default userSchema;
