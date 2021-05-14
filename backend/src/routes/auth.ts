@@ -1,9 +1,30 @@
-const express = require('express');
-const router = express.Router();
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+import User from '../models/User';
+import { Router, Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import bcrypt from 'bcryptjs';
 
-router.post('/login', function (req: IRequest, res: IResponse, next: Function) {
+const authRouter = Router();
+
+authRouter.post('/signup', (req: Request, res: Response, next: Function) => {
+  bcrypt.hash(req.body.password, 10, (err, salt) => {
+    if (err) {
+      return err;
+    } else {
+      const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+      }).save((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.status(200);
+      });
+    }
+  });
+});
+
+authRouter.post('/login', (req: Request, res: Response, next: Function) => {
   passport.authenticate(
     'jwt',
     { session: false },
@@ -27,14 +48,4 @@ router.post('/login', function (req: IRequest, res: IResponse, next: Function) {
   )(req, res);
 });
 
-interface IResponse {
-  status: Function;
-  send: Function;
-  json: Function;
-}
-
-interface IRequest {
-  login: Function;
-}
-
-export default router;
+export default authRouter;
